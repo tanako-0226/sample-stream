@@ -66,4 +66,4 @@ jobs:
         with:
           app-name: 'tanakou-agri'
           slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_DEBAF63AD61A444ABC838A51580A540C }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_F8264F718E3746CF8F77FD43920262F3 }}
