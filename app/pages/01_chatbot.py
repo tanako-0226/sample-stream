@@ -78,7 +78,7 @@ if prompt := st.chat_input("質問してください"):
 
     st.dataframe(df.loc[I[0]])
     
-    stream = client.chat.completions.create(model="gpt-35-turbo", 
+    stream = client.chat.completions.create(model="gpt-4o",
                                                     temperature=0.3,
                                                     max_tokens=3000,
                                                     messages=messages,
