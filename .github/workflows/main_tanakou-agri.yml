@@ -20,7 +20,7 @@ jobs:
       - name: Set up Python version
         uses: actions/setup-python@v1
         with:
-          python-version: '3.9'
+          python-version: '3.10'
 
       - name: Create and start virtual environment
         run: |
@@ -66,4 +66,4 @@ jobs:
         with:
           app-name: 'tanakou-agri'
           slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_D8A579E8687943D4A3D6325266D7DC1B }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_DEBAF63AD61A444ABC838A51580A540C }}
