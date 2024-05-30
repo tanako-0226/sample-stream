@@ -6,7 +6,7 @@ services:
     stdin_open: true
     tty: true
     ports:
-      - 8000:8000
+      - 8501:8501
     env_file:
       - .env
     volumes:
