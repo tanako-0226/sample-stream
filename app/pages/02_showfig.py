@@ -222,3 +222,53 @@ long_df = pd.melt(df, id_vars=['question', 'ground_truth', 'answer', 'contexts']
 fig_boxplot = px.box(long_df, x="metrics", y="value", points="all", hover_data=["question", "answer"])
 container3.plotly_chart(fig_boxplot)
 
+
+
+
+
+#RAG有無での評価比較---------------------------------------------------------------------------------------------------------------------------------------------
+container4 = st.container(border=True)
+container4.subheader("Differences in results with and without RAG", divider='blue')
+
+
+result_no_rag = {'answer_correctness': 0.3709}
+result_rag = {'answer_correctness': 0.6154}
+
+# データをリスト化
+results = [result_no_rag, result_rag]
+names = ['without RAG', 'with RAG 2']
+
+
+# 棒グラフ用のデータ
+# categories = ['faithfulness', 'answer_relevancy', 'answer_correctness']
+categories = list(result_rag.keys())
+
+# 棒グラフ用のデータを生成
+values = [[res[cat] for res in results] for cat in categories]
+
+# 棒グラフ作成
+bar_fig = go.Figure()
+
+# 全てのカテゴリーの棒グラフを追加
+for i, name in enumerate(names):
+    bar_fig.add_trace(go.Bar(
+        x=categories,
+        y=[val[i] for val in values],
+        name=name,  # レジェンドの名前
+        #marker=dict(color=colors[i])  # 棒グラフの色を指定
+    ))
+
+# レイアウト設定
+bar_fig.update_layout(
+    title='Retrieval Augmented Generation - Evaluation (Bar Chart)',
+    xaxis=dict(title='Result'),  # x軸ラベル
+    yaxis=dict(title='Value', range=[0, 1]),  # y軸ラベルと値の範囲
+    showlegend=True,
+    #barmode='group',
+    bargroupgap=0.1,
+    width=1200,
+    #height = 500,
+)
+
+# グラフを表示
+container4.plotly_chart(bar_fig)
