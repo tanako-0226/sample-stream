@@ -68,7 +68,7 @@ if prompt := st.chat_input("質問してください"):
     retreval_num = 3
     _, I = index.search(question_emb_np, retreval_num)
 
-    system_prompt = "以下の質問に答えてください。参照する情報を以下に提示するので、それを踏また回答を作成してください。\n"
+    system_prompt = "以下の質問に答えてください。参考になる情報をいくつか提示しますので、それを踏まえて一言で回答を作成してください。\n"
     messages = [{"role": "system", "content": system_prompt}]  + st.session_state.messages[1:]
 
     for i in range(retreval_num):
@@ -78,12 +78,11 @@ if prompt := st.chat_input("質問してください"):
 
     st.dataframe(df.loc[I[0]])
     
-    stream = client.chat.completions.create(model="gpt-4o",
+    stream = client.chat.completions.create(model="gpt-35-turbo", 
                                                     temperature=0.3,
                                                     max_tokens=3000,
                                                     messages=messages,
                                                     stream=True)
-    
 
     response = st.chat_message("assistant").write_stream(stream)
     st.session_state.messages.append({"role": "assistant", "content": response})
